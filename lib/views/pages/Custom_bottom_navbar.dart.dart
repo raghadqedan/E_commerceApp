@@ -93,6 +93,7 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<AuthCubit>(context);
     return Scaffold(
+      
       appBar: AppBar(
         leading: const Padding(
           padding: EdgeInsets.all(4.0),

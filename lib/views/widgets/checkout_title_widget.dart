@@ -7,24 +7,21 @@ class CheckoutTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
  Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
-                ),
-                if(numperOfProduct!=null)
-                Text(' ($numperOfProduct) ', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),)
-              ],
-            ),
-          if(onEdit!=null)  
-          TextButton(onPressed:onEdit, child: const Text('Edit'))
-          ],
-        ),
+   children: [
+     Text(
+       title,
+       style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+     ),
+     if(numperOfProduct!=null)
+     Text(' ($numperOfProduct) ', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),)
+   ],
+ ),
+           if(onEdit!=null)  
+           TextButton(onPressed:onEdit, child: const Text('Edit')),
 
     ],
 

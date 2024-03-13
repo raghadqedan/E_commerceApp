@@ -1,16 +1,20 @@
-# ecommerce_app
+# Ecommerce_app
 
-A new Flutter project.
+## About
+Developed a Ecommerce  application using Flutter and Firebase.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Packages Used
 
-A few resources to get you started if this is your first Flutter project:
+  cached_network_image: ^3.3.1
+  carousel_slider: ^4.2.1
+  cloud_firestore: ^4.12.0
+  cupertino_icons: ^1.0.2
+  firebase_auth: ^4.17.4
+  firebase_core: ^2.25.4
+  flutter_bloc: ^8.1.4
+  flutter_dash: ^1.0.0
+  persistent_bottom_nav_bar_v2: ^4.2.8
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Design
+https://github.com/raghadqedan/E_commerceApp/assets/84421572/5733a541-f764-4305-bf9f-9ca90f737a36
