@@ -24,11 +24,9 @@ int _current=0;
     return Column(children: [
         CarouselSlider(
           items: widget.anouncement
-          .map((item) => Container(
-                child: Center(
-                    child:
-                      CachedNetworkImage( imageUrl: item.imageUrl, fit: BoxFit.cover, width: 1000)),
-              ))
+          .map((item) => Center(
+              child:
+                CachedNetworkImage( imageUrl: item.imageUrl, fit: BoxFit.cover, width: 1000)))
           .toList(),
           carouselController: _controller,
           options: CarouselOptions(

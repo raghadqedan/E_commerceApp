@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetailsPage extends StatelessWidget {
+  const ProductDetailsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -319,7 +321,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                         .primaryColor,
                                                 foregroundColor:
                                                     AppColors.white),
-                                            child: Text('Add To Cart'),
+                                            child: const Text('Add To Cart'),
                                           );
                                         }
                                       },

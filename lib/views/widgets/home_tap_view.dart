@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/models/product_item_model.dart';
+
 import 'package:ecommerce_app/utils/Routes/AppRoutes.dart';
 import 'package:ecommerce_app/view_models.dart/home/home_cubit.dart';
 import 'package:ecommerce_app/views/widgets/custom_carousel_indicatior.dart';

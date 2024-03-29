@@ -1,8 +1,6 @@
 import 'package:ecommerce_app/models/added_to_cart.dart';
 import 'package:ecommerce_app/services/auth_services.dart';
 import 'package:ecommerce_app/services/cart_services.dart';
-import 'package:ecommerce_app/services/firestore_services.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'cart_state.dart';

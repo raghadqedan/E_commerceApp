@@ -16,8 +16,8 @@ final  Widget? child;
     return SizedBox(
       width: double.infinity,
       height: height,
-      child: ElevatedButton(onPressed: onPressed, child: child??Text(title!),
-      style: ElevatedButton.styleFrom(foregroundColor: fgColor,backgroundColor: bgColor,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),),
+      child: ElevatedButton(onPressed: onPressed,
+      style: ElevatedButton.styleFrom(foregroundColor: fgColor,backgroundColor: bgColor,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))), child: child??Text(title!),),
     );
   }
 }

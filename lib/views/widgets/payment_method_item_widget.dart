@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/models/payment_model.dart';
 import 'package:ecommerce_app/utils/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 class PaymentMethodItemWidget extends StatelessWidget {
   final PaymentMethodModel paymentMethod;
   const PaymentMethodItemWidget({super.key, required this.paymentMethod});
@@ -30,7 +29,7 @@ Column(
 
 ],),
 const Spacer(),
-Icon(Icons.chevron_right,color: AppColors.grey,)
+const Icon(Icons.chevron_right,color: AppColors.grey,)
      ],)
       ),
 

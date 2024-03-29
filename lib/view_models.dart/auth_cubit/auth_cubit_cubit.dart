@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/services/auth_services.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_cubit_state.dart';
@@ -43,7 +42,7 @@ Future<void> getCurrentUser()async{
        emit(AuthLoading());
 
        try{
-        Future.delayed(Duration(seconds: 2));
+        Future.delayed(const Duration(seconds: 2));
        await authServices.logOut();
        emit(AuthInitial());
   

@@ -6,6 +6,7 @@ import 'package:ecommerce_app/views/pages/Custom_bottom_navbar.dart.dart';
 import 'package:ecommerce_app/views/pages/checkout_page.dart';
 import 'package:ecommerce_app/views/pages/login_page.dart';
 import 'package:ecommerce_app/views/pages/product_details_page.dart';
+import 'package:ecommerce_app/views/pages/search_page.dart';
 import 'package:ecommerce_app/views/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class AppRouters {
                     cubit.getProductDetails(productItem.id);
                     return cubit;
                   },
-                  child: ProductDetailsPage(),
+                  child: const ProductDetailsPage(),
                 ));
       case AppRoutes.buttomNavbar:
         return MaterialPageRoute(builder: (_) => const CustomButtomNavBar());
@@ -38,6 +39,8 @@ class AppRouters {
                   return cubit;},
                   child: const CheckoutPage(),
                 ));
+                case AppRoutes.search:
+               return  MaterialPageRoute(builder: ((_) =>const SearchPage() ));
       default:
         return MaterialPageRoute(
             builder: (_) => const Scaffold(

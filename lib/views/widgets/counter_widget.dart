@@ -1,11 +1,9 @@
 import 'package:ecommerce_app/models/added_to_cart.dart';
 import 'package:ecommerce_app/utils/app_color.dart';
-import 'package:ecommerce_app/view_models.dart/product_details/product_details_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterWidget extends StatelessWidget {
-  final dynamic? cubit;
+  final dynamic cubit;
   final int? counter;
   final CartOrdersModel? cartOrder;
   bool isLoading;

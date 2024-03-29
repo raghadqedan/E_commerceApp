@@ -34,7 +34,7 @@ class AuthServicesImp extends AuthServices{
  UserCredential? userCrdential=await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
      final User? user = userCrdential.user;
     if (user != null) {
-      fireStore.setData(path: ApiPathes.user(user!.uid), data: {
+      fireStore.setData(path: ApiPathes.user(user.uid), data: {
         'uid': user.uid,
         'email': email,
         'photoUrl': user.photoURL,
@@ -48,6 +48,7 @@ class AuthServicesImp extends AuthServices{
   }
 
 
+  @override
   Future<User?>currentUser(){
       return  Future.value(firebaseAuth.currentUser);
 

@@ -1,9 +1,9 @@
 import 'package:ecommerce_app/models/product_item_model.dart';
 import 'package:ecommerce_app/services/firestore_services.dart';
+import 'package:ecommerce_app/utils/Routes/AppRoutes.dart';
 import 'package:ecommerce_app/utils/api_pathes.dart';
 import 'package:ecommerce_app/view_models.dart/auth_cubit/auth_cubit_cubit.dart';
 import 'package:ecommerce_app/view_models.dart/cart_cubit/cart_cubit.dart';
-import 'package:ecommerce_app/view_models.dart/product_details/product_details_cubit.dart';
 import 'package:ecommerce_app/views/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +50,7 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
           cubit.getCartItems();
           return cubit;
           },
-        child: CartPage(),
+        child: const CartPage(),
              ),
       const ProfilePage(),
     ];
@@ -91,7 +91,7 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<AuthCubit>(context);
+    BlocProvider.of<AuthCubit>(context);
     return Scaffold(
       
       appBar: AppBar(
@@ -116,7 +116,10 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
         ]),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+Navigator.of(context).pushNamed(AppRoutes.search);
+
+            },
             icon: const Icon(Icons.search),
           ),
           IconButton(
