@@ -6,9 +6,14 @@ import 'package:ecommerce_app/views/widgets/prodect_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeTapView extends StatelessWidget {
+class HomeTapView extends StatefulWidget {
   const HomeTapView({super.key});
 
+  @override
+  State<HomeTapView> createState() => _HomeTapViewState();
+}
+
+class _HomeTapViewState extends State<HomeTapView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -66,7 +71,7 @@ return Center(child: Text(state.message),);}
                           onTap: () =>
                               Navigator.of(context, rootNavigator: true)
                                   .pushNamed(AppRoutes.productDetails,
-                                      arguments: state.products[index]),
+                                      arguments: state.products[index]).then((value) => setState((){})),
                           child: ProductItem(
                             productItem: state.products[index],
                           ),

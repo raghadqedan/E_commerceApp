@@ -32,6 +32,7 @@ class ProductItemModel {
   final double price;
   final String category;
   final double averageRate;
+  bool isFav;
 
   ProductItemModel(
       {required this.id,
@@ -41,7 +42,9 @@ class ProductItemModel {
           'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       required this.price,
       required this.category,
-      this.averageRate=4.5});
+      this.averageRate=4.5,
+      this.isFav=false,
+      });
 
 
 ProductItemModel copyWith({

@@ -1,21 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/models/favorite_model.dart';
-import 'package:ecommerce_app/models/product_item_model.dart';
 import 'package:ecommerce_app/utils/app_color.dart';
+import 'package:ecommerce_app/views/widgets/prodect_item.dart';
 import 'package:flutter/material.dart';
-
-class ProductItem extends StatefulWidget {
-  final ProductItemModel productItem;
-  const ProductItem({super.key, required this.productItem});
+class FavoritesitemWidget extends StatefulWidget {
+  const FavoritesitemWidget({super.key});
 
   @override
-  State<ProductItem> createState() => _ProductItemState();
+  State<FavoritesitemWidget> createState() => _FavoritesitemWidgetState();
 }
 
-class _ProductItemState extends State<ProductItem> {
+class _FavoritesitemWidgetState extends State<FavoritesitemWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return     dummyFaveroits.isNotEmpty? GridView.builder(
+                itemCount: dummyFaveroits.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 25,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: ((context, index) {
+                  final productItem=dummyFaveroits[index];
+                  return   Column(
       children: [
         Stack(
           children: [
@@ -29,7 +38,7 @@ class _ProductItemState extends State<ProductItem> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CachedNetworkImage(
-                  imageUrl: widget.productItem.imgUrl,
+                  imageUrl: productItem.imgUrl,
                   fit: BoxFit.contain,
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator.adaptive(),
@@ -45,57 +54,52 @@ class _ProductItemState extends State<ProductItem> {
               top: 8.0,
               right: 8.0,
               child: DecoratedBox(
-                decoration: const BoxDecoration(
+                decoration: const  BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white54,
                 ),
                 child: IconButton(
-  onPressed: () {
-    setState(() {
-      // Toggle the favorite status
-      print('pppppppb${widget.productItem.isFav}');
-      widget.productItem.isFav = !widget.productItem.isFav;
-
-      if (widget.productItem.isFav) {
-        // Add the item to favorites list
-          print('ppppppA${widget.productItem.isFav}');
-        dummyFaveroits.add(widget.productItem);
-      } else {
-        // Remove the item from favorites list
-        print('ppppppA${widget.productItem.isFav}');
-        dummyFaveroits.remove(widget.productItem);
-      }
-    });
-  },
-  icon: Icon(
-    widget.productItem.isFav ? Icons.favorite : Icons.favorite_border,
-    color: widget.productItem.isFav ? Colors.red : null,
-  ),
-),
+                  onPressed: () {
+                    setState((){
+                 print('ffff${productItem.isFav}');
+                    productItem.isFav=false;
+                    dummyFaveroits.remove(productItem);
+                      print('ffff${productItem.isFav}');
+                
+                
+                  });},
+                 
+                  icon:productItem.isFav?const Icon(Icons.favorite,color:AppColors.red):const Icon(Icons.favorite_border),
+                ),
               ),
             ),
           ],
         ),
         const SizedBox(height: 4.0),
         Text(
-          widget.productItem.name,
+          productItem.name,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 fontWeight: FontWeight.w600,
               ),
         ),
         Text(
-          widget.productItem.category,
+          productItem.category,
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
                 color: Colors.grey,
               ),
         ),
         Text(
-          '\$${widget.productItem.price}',
+          '\$${productItem.price}',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
                 fontWeight: FontWeight.w600,
               ),
         ),
       ],
+    );
+  })
+    ):const Padding(
+      padding:  EdgeInsets.only(top: 180),
+      child: Text('No Favorite Items '),
     );
   }
 }

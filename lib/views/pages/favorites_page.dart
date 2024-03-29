@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/utils/app_color.dart';
+import 'package:ecommerce_app/views/widgets/favorites_item_widget.dart';
 import 'package:ecommerce_app/views/widgets/prodect_item.dart';
 import 'package:ecommerce_app/views/widgets/search_wedget.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +38,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
                             height: 40,
                             child: ElevatedButton(
                               onPressed: () => setState(() {
-                                if( selectedFiltter ==filtter.name)
-                                      selectedFiltter='';
-                                      else
-                                      selectedFiltter = filtter.name;
+                                if( selectedFiltter ==filtter.name) {
+                                  selectedFiltter='';
+                                } else {
+                                  selectedFiltter = filtter.name;
+                                }
                               }),
-                              child: Text(filtter.name),
                               style: ElevatedButton.styleFrom(
                                   foregroundColor:
                                       filtter.name == selectedFiltter
@@ -53,6 +55,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                           : AppColors.white,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8))),
+                              child: Text(filtter.name),
                             ),
                           ),
                         ),
@@ -62,17 +65,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
             const SizedBox(
               height: 16,
             ),
-            GridView.builder(
-                itemCount: dummyFaveroits.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 25,
-                  crossAxisSpacing: 10,
-                ),
-                itemBuilder: ((context, index) =>
-                    ProductItem(productItem: dummyFaveroits[index])))
+           const  FavoritesitemWidget(),
+  
+           //
           ],
         ),
       ),

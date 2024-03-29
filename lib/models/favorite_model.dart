@@ -9,4 +9,4 @@ Most_Popular,
 Cheapest;
 }
 
-List<ProductItemModel> dummyFaveroits=dummyProducts;
+List<ProductItemModel> dummyFaveroits=[];
