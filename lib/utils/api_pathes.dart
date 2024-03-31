@@ -9,4 +9,5 @@ class ApiPathes{
       'users/$uid/addresses/';
         static String getPaymentMethods(String uid) =>
     'users/$uid/paymentmethods/';
+    
 }

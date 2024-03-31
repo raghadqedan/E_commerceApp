@@ -73,9 +73,12 @@ class FirestoreService {
     Query Function(Query query)? queryBuilder,
     int Function(T lhs, T rhs)? sort,
   }) async {
+      
     Query query = firestore.collection(path);
     if (queryBuilder != null) {
+     
       query = queryBuilder(query);
+      
     }
     final snapshots = await query.get();
     final result = snapshots.docs

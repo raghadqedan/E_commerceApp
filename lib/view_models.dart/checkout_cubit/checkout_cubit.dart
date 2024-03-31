@@ -16,12 +16,17 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     
     emit(CheckoutLoading());
     try {
-       
+     
 final authService=AuthServicesImp();
+
 final user=await authService.currentUser();
 final preferedAddressModel preferedAddress=(await checkoutServices.getAddresses(user!.uid,fetchPreferred: true)).first;
+
+
 final cartItems=await checkoutServices.getCartItems(user.uid);
+
 final preferedPaymentMethod=(await checkoutServices.getPaymentMethod(user.uid,fetchPreferred: true)).first;
+print('aaaa');
 final double totalAmount=cartItems.fold(0.0,(sum,item)=>sum=sum+item.quantity*item.product.price);
 
 

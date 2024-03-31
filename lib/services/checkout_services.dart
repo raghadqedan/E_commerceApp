@@ -16,6 +16,7 @@ class CheckoutServicesImp implements CheckoutServices {
   @override
   Future<List<preferedAddressModel>> getAddresses(String uid,
       {bool fetchPreferred = false}) async {
+
     return await fireStoreServices.getCollection<preferedAddressModel>(
         path: ApiPathes.getAddresses(uid),
         builder: ((data, documentID) => preferedAddressModel.fromMap(data)),
@@ -38,9 +39,9 @@ class CheckoutServicesImp implements CheckoutServices {
        final s= await fireStoreServices.getCollection<PaymentMethodModel>(
         path: ApiPathes.getPaymentMethods(uid),
         builder: ((data, documentID) => PaymentMethodModel.fromMap(data)),
-        // queryBuilder: fetchPreferred
-        //     ? (query) => query.where('isFavorites', isEqualTo: true)
-        //     : null
+         queryBuilder: fetchPreferred
+             ? (query) => query.where('isFavorites', isEqualTo: true)
+             : null
         );
             print(s);
             return s;
