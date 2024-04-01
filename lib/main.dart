@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       },
       child: Builder(builder: (context) {
         final cubit = BlocProvider.of<AuthCubit>(context);
+        cubit.getCurrentUser;
         return BlocBuilder<AuthCubit, AuthState>(
           bloc: cubit,
           buildWhen: ((previous, current) =>
