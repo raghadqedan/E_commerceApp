@@ -10,5 +10,6 @@ class ApiPathes{
         static String getPaymentMethods(String uid) =>
     'users/$uid/paymentmethods/';
       static String announcements()=>'announcements/';
+      static String categories()=>'categories/';
     
 }

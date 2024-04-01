@@ -38,7 +38,7 @@ else if(state is CategoryLoaded)
                 physics: const  NeverScrollableScrollPhysics(),
                 itemBuilder:(context, index){
                   final categoryItem=categories[index];
-                  final item=CategoryItem(name:categoryItem.name,imgurl:categoryItem.img ,index:index);
+                  final item=CategoryItem(name:categoryItem.name,imgurl:categoryItem.imgurl ,index:index);
                    return item ;} )
             ],),
           ),
