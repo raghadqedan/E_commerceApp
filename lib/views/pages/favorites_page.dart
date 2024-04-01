@@ -20,83 +20,69 @@ class _FavoritesPageState extends State<FavoritesPage> {
   String selectedFiltter = '';
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        final cubit = FavoritesCubit();
-        cubit.getFavoritesDate();
-        return cubit;
-      },
-      child: BlocBuilder<FavoritesCubit, FavoritesState>(
-      buildWhen: (previous, current) => current is FavoritesLoaded ||current is FavoritesLoading ||current is FavoritesError,
-        builder: (context, state) {
-           if(state is FavoritesLoading){
-return  const Center(child: CircularProgressIndicator.adaptive(),);}
-else if(state is FavoritesError){
-return Center(child: Text(state.message),);}
-else if(state is FavoritesLoaded){
-  final favorites=state.favorites;
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SearchWedget(
-                    title: 'Search Something',
-                    fillter: true,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                        children: FiltterFaveroitsItem.values
-                            .map(
-                              (filtter) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  height: 40,
-                                  child: ElevatedButton(
-                                    onPressed: () => setState(() {
-                                      if (selectedFiltter == filtter.name) {
-                                        selectedFiltter = '';
-                                      } else {
-                                        selectedFiltter = filtter.name;
-                                      }
-                                    }),
-                                    style: ElevatedButton.styleFrom(
-                                        foregroundColor:
-                                            filtter.name == selectedFiltter
-                                                ? AppColors.white
-                                                : null,
-                                        backgroundColor:
-                                            filtter.name == selectedFiltter
-                                                ? AppColors.primary
-                                                : AppColors.white,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8))),
-                                    child: Text(filtter.name),
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList()),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  FavoritesitemWidget(favorites:favorites),
-
-                  //
-                ],
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SearchWedget(
+              title: 'Search Something',
+              fillter: true,
             ),
-          );}
-          else{
-            return SizedBox();
-          }
-        },
+            const SizedBox(
+              height: 20,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  children: FiltterFaveroitsItem.values
+                      .map(
+                        (filtter) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            height: 40,
+                            child: ElevatedButton(
+                              onPressed: () => setState(() {
+                                if (selectedFiltter == filtter.name) {
+                                  selectedFiltter = '';
+                                } else {
+                                  selectedFiltter = filtter.name;
+                                }
+                              }),
+                              style: ElevatedButton.styleFrom(
+                                  foregroundColor:
+                                      filtter.name == selectedFiltter
+                                          ? AppColors.white
+                                          : null,
+                                  backgroundColor:
+                                      filtter.name == selectedFiltter
+                                          ? AppColors.primary
+                                          : AppColors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8))),
+                              child: Text(filtter.name),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList()),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            BlocProvider(
+              create: (context) {
+                final cubit=FavoritesCubit();
+                cubit.getFavoritesDate();
+                return cubit;
+
+              },
+              child: FavoritesitemWidget(),
+            ),
+
+            //
+          ],
+        ),
       ),
     );
   }

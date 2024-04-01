@@ -2,20 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/models/favorite_model.dart';
 import 'package:ecommerce_app/models/product_item_model.dart';
 import 'package:ecommerce_app/utils/app_color.dart';
+import 'package:ecommerce_app/view_models.dart/favorites/favorites_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductItem extends StatefulWidget {
+class ProductItem extends StatelessWidget {
   final ProductItemModel productItem;
   const ProductItem({super.key, required this.productItem});
 
-  @override
-  State<ProductItem> createState() => _ProductItemState();
+  bool isProductFavorite(FavoritesItemModel favoritesItem, ProductItemModel productItem) {
+  return favoritesItem.favProductItem.id== productItem.id;
 }
 
-class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         Stack(
           children: [
@@ -29,7 +30,7 @@ class _ProductItemState extends State<ProductItem> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CachedNetworkImage(
-                  imageUrl: widget.productItem.imgUrl,
+                  imageUrl: productItem.imgUrl,
                   fit: BoxFit.contain,
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator.adaptive(),
@@ -49,48 +50,91 @@ class _ProductItemState extends State<ProductItem> {
                   shape: BoxShape.circle,
                   color: Colors.white54,
                 ),
-                child: IconButton(
-  onPressed: () {
-    setState(() {
-      // Toggle the favorite status
-      print('pppppppb${widget.productItem.isFav}');
-      widget.productItem.isFav = !widget.productItem.isFav;
+                child: BlocProvider(
+                  create: (context) { final favcubit=BlocProvider.of<FavoritesCubit>(context);
+                      favcubit.getFavoritesDate();
+                      return favcubit;},
+              
+                  child: BlocBuilder<FavoritesCubit, FavoritesState>(
 
-      if (widget.productItem.isFav) {
-        // Add the item to favorites list
-          print('ppppppA${widget.productItem.isFav}');
-        dummyFaveroits.add(widget.productItem);
-      } else {
-        // Remove the item from favorites list
-        print('ppppppA${widget.productItem.isFav}');
-        dummyFaveroits.remove(widget.productItem);
-      }
-    });
-  },
-  icon: Icon(
-    widget.productItem.isFav ? Icons.favorite : Icons.favorite_border,
-    color: widget.productItem.isFav ? Colors.red : null,
-  ),
-),
+                    buildWhen:  (previous, current) => current is FavoritesLoaded ||current is FavoritesLoading ||current is FavoritesError || current is Favoritessuccess,
+                    builder: (context, state) {
+                      final favcubit=BlocProvider.of<FavoritesCubit>(context);
+                     
+       
+                      if(state is FavoritesLoaded){
+                       final favoritesItem = state.favorites;
+                      return IconButton(
+                        onPressed: () {
+                       
+ // Check if the product is already in the user's favorites
+        final isFavorite = favoritesItem.any((item) => isProductFavorite(item, productItem));
+
+        if (isFavorite) {
+          // If the product is already a favorite, remove it from favorites
+          favcubit.removeFromFavorites(productItem.id); // Assuming you pass the product ID to removeFromFavorites
+        } else {
+          // If the product is not a favorite, add it to favorites
+          favcubit.addToFavorites(productItem); // Assuming you pass the product to addToFavorites
+        }                    
+                              },
+                        icon: Icon(
+                          productItem.isFav
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: productItem.isFav ? Colors.red : null,
+                        ),
+                      );}
+                      else{
+                         return IconButton(
+                        onPressed: () {
+                         
+                            // Toggle the favorite status
+                            
+
+                          //   if (widget.productItem.isFav) {
+                          //     // Add the item to favorites list
+                          //     print('ppppppA${widget.productItem.isFav}');
+                          //     // dummyFaveroits.add(widget.productItem);
+                          //   } else {
+                          //     // Remove the item from favorites list
+                          //     print('ppppppA${widget.productItem.isFav}');
+                          //     //  dummyFaveroits.remove(widget.productItem);
+                          //   }
+                   
+                        },
+                        icon: Icon(
+                          productItem.isFav
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: productItem.isFav ? Colors.red : null,
+                        ),
+                      );
+
+
+                      }
+                    },
+                  ),
+                ),
               ),
             ),
           ],
         ),
         const SizedBox(height: 4.0),
         Text(
-          widget.productItem.name,
+          productItem.name,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 fontWeight: FontWeight.w600,
               ),
         ),
         Text(
-          widget.productItem.category,
+          productItem.category,
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
                 color: Colors.grey,
               ),
         ),
         Text(
-          '\$${widget.productItem.price}',
+          '\$${productItem.price}',
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
                 fontWeight: FontWeight.w600,
               ),

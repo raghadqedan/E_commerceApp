@@ -6,10 +6,11 @@ class FavoritesState {}
  class FavoritesLoading extends FavoritesState {}
 
  class FavoritesLoaded extends FavoritesState {
-    final List<ProductItemModel> favorites;
+    final List<FavoritesItemModel> favorites;
 
   FavoritesLoaded(this.favorites);
  }
+  class Favoritessuccess extends FavoritesState {}
 
  class FavoritesError extends FavoritesState {
 final String message;

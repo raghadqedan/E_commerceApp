@@ -11,5 +11,7 @@ class ApiPathes{
     'users/$uid/paymentmethods/';
       static String announcements()=>'announcements/';
       static String categories()=>'categories/';
-    
+      static String getFavoritesItems(String uid)=>'users/$uid/favoritItems/';
+       static String favoriteItem(String uid, String favoriteItemId) =>
+      'users/$uid/favoritItems/$favoriteItemId';
 }
