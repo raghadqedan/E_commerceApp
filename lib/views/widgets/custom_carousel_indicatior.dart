@@ -26,7 +26,7 @@ int _current=0;
           items: widget.anouncement
           .map((item) => Center(
               child:
-                CachedNetworkImage( imageUrl: item.imageUrl, fit: BoxFit.cover, width: 1000)))
+                CachedNetworkImage( imageUrl: item.imgurl, fit: BoxFit.cover, width: 1000)))
           .toList(),
           carouselController: _controller,
           options: CarouselOptions(
