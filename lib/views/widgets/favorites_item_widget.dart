@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/models/favorite_model.dart';
+import 'package:ecommerce_app/models/product_item_model.dart';
 import 'package:ecommerce_app/utils/app_color.dart';
-import 'package:ecommerce_app/views/widgets/prodect_item.dart';
 import 'package:flutter/material.dart';
 class FavoritesitemWidget extends StatefulWidget {
-  const FavoritesitemWidget({super.key});
+  final List<ProductItemModel> favorites;
+ FavoritesitemWidget({super.key,required this.favorites});
 
   @override
   State<FavoritesitemWidget> createState() => _FavoritesitemWidgetState();
@@ -13,8 +14,8 @@ class FavoritesitemWidget extends StatefulWidget {
 class _FavoritesitemWidgetState extends State<FavoritesitemWidget> {
   @override
   Widget build(BuildContext context) {
-    return     dummyFaveroits.isNotEmpty? GridView.builder(
-                itemCount: dummyFaveroits.length,
+    return     widget.favorites.isNotEmpty? GridView.builder(
+                itemCount:  widget.favorites.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -23,7 +24,7 @@ class _FavoritesitemWidgetState extends State<FavoritesitemWidget> {
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: ((context, index) {
-                  final productItem=dummyFaveroits[index];
+                  final productItem= widget.favorites[index];
                   return   Column(
       children: [
         Stack(
